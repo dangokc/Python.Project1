@@ -4,6 +4,8 @@ from random import randint
 from Item import Item
 from ShoppingCart import ShoppingCart
 
+done = False
+
 store = []
 itemNames = ["HDMI cable", "keyboard", "headphone", "RAM"]
 def make_store_items(amt):
@@ -13,7 +15,36 @@ def make_store_items(amt):
         store.append(n_item)
         storeitems += 1
 
-# make_store_items(3)
-# for x in store:
-#     print(x.name, x.price)
+def createstore(storefile):
+    try:
+        fx = open(storefile, "r")
+        str1 = ""
+        str1 = fx.read()
+    except IOError:
+        print("No Existing Store... generating items")
+        make_store_items(4)
+
+def liststore():
+    iid = 0
+    for x in store:
+        print(iid, x.name, x.price)
+        iid += 1
+
+def printMenu():
+    print("Type C to view cart items")
+    print("Type R to view cart items")
+    print("Type an item number to buy it")
+    print("Type P to get the total price")
+
+def handleInput(in_var, cart):
+    char_inputs = ["C", "R", "P"]
+
+
+# make_store_items(4)
+# liststore()
+#
+# cart1 = ShoppingCart()
+# createstore("cart1.cartfile")
+# while(done == False):
+#     liststore()
 
